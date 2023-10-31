@@ -1,0 +1,65 @@
+#Reseach Questions: Is there a relationship between the area a patient lives in and the type of visit they have?
+How strong is the relationship between the length of stay and the total charge?
+
+#Initalizing packages and dataframe
+import matplotlib.pyplot as plt
+import pandas as pd
+pd.set_option('display.max_columns', None)
+
+df = pd.read_csv(r"C:\Users\alana\OneDrive\Desktop\D207 Assessment\medical_clean.csv")
+df.head()
+
+#Graphs for relevant variable
+#Area (e.g. Urban, Suburban)
+plt.hist(df['Area'])
+plt.savefig('Area.png')
+plt.show()
+print(df['Area'].mode())
+print(df['Area'].value_counts())
+
+#Initial_Admin (Type of Admission)
+plt.hist(df['Initial_admin'])
+plt.savefig('Initial_admin.png')
+plt.show()
+print(df['Initial_admin'].mode())
+print(df['Initial_admin'].value_counts())
+    
+#Inital_days (Length of Stay)
+plt.hist(df['Initial_days'])
+plt.savefig('Initial_days.png')
+plt.show()
+print(df['Initial_days'].mean())
+        
+#TotalCharge
+plt.hist(df['TotalCharge'])
+plt.savefig('TotalCharge.png')
+plt.show()
+print(df['TotalCharge'].mean())
+
+
+
+#Stacked Bar Chart for Area and Type of Admission
+bars = pd.DataFrame({'Rural':[len(df.loc[(df['Area'] == 'Rural') & (df['Initial_admin'] == 'Emergency Admission')]),
+                            len(df.loc[(df['Area'] == 'Rural') & (df['Initial_admin'] == 'Elective Admission')]),
+                            len(df.loc[(df['Area'] == 'Rural') & (df['Initial_admin'] == 'Observation Admission')])],
+                  'Suburban':[len(df.loc[(df['Area'] == 'Suburban') & (df['Initial_admin'] == 'Emergency Admission')]),
+                             len(df.loc[(df['Area'] == 'Suburban') & (df['Initial_admin'] == 'Elective Admission')]),
+                             len(df.loc[(df['Area'] == 'Suburban') & (df['Initial_admin'] == 'Observation Admission')])],
+                  'Urban':[len(df.loc[(df['Area'] == 'Urban') & (df['Initial_admin'] == 'Emergency Admission')]),
+                          len(df.loc[(df['Area'] == 'Urban') & (df['Initial_admin'] == 'Elective Admission')]),
+                          len(df.loc[(df['Area'] == 'Urban') & (df['Initial_admin'] == 'Observation Admission')])]
+                 })
+labels = ['Emergency Admission','Elective Admission','Observation Admission']
+x = bars.plot(kind='bar', stacked=True, color=['red', 'skyblue', 'green'])
+x.set_xticklabels(labels, rotation = 0)
+plt.savefig('Area_vs_Initial_Admin')
+plt.show()
+print(pd.crosstab(df['Area'],df['Initial_admin']))
+
+
+
+#Scatterplot between Length of Stay and TotalCharge
+plt.scatter(df['Initial_days'],df['TotalCharge'])
+plt.savefig('Initial_days_vs_TotalCharge.png')
+plt.show()
+print(df['Initial_days'].corr(df['TotalCharge']))
