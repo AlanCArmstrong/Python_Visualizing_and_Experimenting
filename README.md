@@ -4,6 +4,7 @@ In this project, I used Python to conduct a basic chi-squared test of independen
 the reason for patient admission. The p-value was 0.717, so I concluded it was not likely. The code:
 
 
+
 I also created a stacked bar chart to confirm this:
 
 
