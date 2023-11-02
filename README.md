@@ -10,6 +10,6 @@ I also created a stacked bar chart to confirm this:
 ([https://github.com/AlanCArmstrong/Python_Visualizing_and_Experimenting/blob/main/Area_vs_Initial_Admin.png])
 
 To check for bias in the hospital, I found and graphed the correlation between length of stay and total charge and found a correlation of 0.988.
-I concluded no bias. The scatter chart showing a high correlation:
+I concluded no bias. This scatter chart confirms a high correlation:
 
 ([https://github.com/AlanCArmstrong/Python_Visualizing_and_Experimenting/blob/main/Initial_days_vs_TotalCharge.png])
