@@ -1,4 +1,4 @@
-# Python_Visualizing_and_Experimenting
+# Python Visualizations and Basic Experimentation
 
 In this project, I used Python to conduct a basic chi-squared test of independence to see if there was a relationship between areas and
 the reason for patient admission. The p-value was 0.717, so I concluded it was not likely. The code:
